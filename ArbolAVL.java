@@ -20,8 +20,8 @@ public class ArbolAVL <AnyType extends Comparable<? super AnyType>> {
     public AnyType findMax(){
         return elementAt( findMax(root));
     }
-    public AnyType find(AnyType x){
-        return elementAt(find(x,root));
+    public NodoAVL<AnyType> find(AnyType x){
+        return find(x,root);
     }
     public void makeEmpty(){
         root = null;
@@ -70,7 +70,7 @@ public class ArbolAVL <AnyType extends Comparable<? super AnyType>> {
         }else if(x.compareTo(t.element) > 0){
             t.right = insert(x, t.right, stock);
         }else{
-            throw new Exception(x.toString()); //DuplicateItemException(x.toString());
+            throw new Exception("Producto duplicado: " +x.toString()); //DuplicateItemException(x.toString());
         }
         
         actualizarAltura(t);// Actualiza la altura del nodo actual

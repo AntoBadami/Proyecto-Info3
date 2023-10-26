@@ -9,8 +9,8 @@ alfabéticamente.
 
 public class Main{
 
-    static void agregar(ArbolAVL<String> arbol) throws Exception{
-        Scanner scanner = new Scanner(System.in);
+    static void agregar(ArbolAVL<String> arbol, Scanner scanner) throws Exception{
+        
         String nombre; 
         int stock = 0;
         
@@ -20,21 +20,37 @@ public class Main{
         stock = Integer.parseInt(scanner.nextLine());
         
         arbol.insert(nombre,stock);
-
-        scanner.close();
     }
 
-    static void eliminar(ArbolAVL<String> arbol) throws Exception{
-        Scanner scanner = new Scanner(System.in);
+    static void eliminar(ArbolAVL<String> arbol, Scanner scanner) throws Exception{
+       
         String nombre; 
 
         System.out.println("Ingrese el nombre del producto a eliminar: ");
         nombre = scanner.nextLine();
 
         arbol.remove(nombre);
-        
-        scanner.close();
     }
+
+    static void buscar(ArbolAVL<String> arbol, Scanner scanner) throws Exception{
+        
+        String nombre; 
+        
+        System.out.println("Ingrese el nombre del producto a buscar: ");
+        nombre = scanner.nextLine();
+        
+        NodoAVL<String> nodoEncontrado = arbol.find(nombre);
+        if (nodoEncontrado != null) {
+            System.out.println("Producto encontrado:");
+            System.out.println("Nombre: " + nodoEncontrado.element);
+            System.out.println("Stock: " + nodoEncontrado.stock);
+        } else {
+            System.out.println("Producto no encontrado");
+        }
+    }
+
+    //TODO falta implementar
+    static void mostrar(){}
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -52,35 +68,43 @@ public class Main{
             System.out.println("5. Salir");
 
             System.out.println("\nIngrese una opcion: ");
-            opcion = Integer.parseInt(scanner.nextLine());
-
+            try {
+                opcion = Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Entrada no válida. Introduzca un número válido.");
+                continue; // Salta al siguiente ciclo
+            }
             switch(opcion){
                 case 1:
                     //agregar producto
                     System.out.println("\nAgregar producto: ");
                     try {
-                        agregar(arbol);
+                        agregar(arbol, scanner);
                     } catch (Exception e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
+                        System.out.println("Error al agregar el producto: " + e.getMessage());
                     }
                     break;
                 case 2:
                     //eliminar producto
                     System.out.println("\nEliminar producto: ");
                     try {
-                        eliminar(arbol);
+                        eliminar(arbol, scanner);
                     } catch (Exception e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                        System.out.println("Producto no encontrado");
+                        System.out.println("Producto no encontrado: ");
                     }
                     break;
                 case 3:
                     //buscar producto
+                    System.out.println("\nBuscar producto: ");
+                    try {
+                        buscar(arbol, scanner);
+                    } catch (Exception e) {
+                        System.out.println("Producto no encontrado");
+                    }
                     break;
                 case 4:
                     //mostrar inventario
+                    //implementar con lista
                     break;
                 case 5:
                     //salir

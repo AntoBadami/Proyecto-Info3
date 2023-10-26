@@ -7,6 +7,8 @@ eliminar productos, buscar productos por nombre y mostrar el inventario ordenado
 alfabéticamente.
  */
 
+//TODO hacer archivo README
+
 public class Main{
 
     static void agregar(ArbolAVL<String> arbol, Scanner scanner) throws Exception{

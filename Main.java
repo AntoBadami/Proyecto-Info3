@@ -8,10 +8,39 @@ alfabéticamente.
  */
 
 public class Main{
+
+    static void agregar(ArbolAVL<String> arbol) throws Exception{
+        Scanner scanner = new Scanner(System.in);
+        String nombre; 
+        int stock = 0;
+        
+        System.out.println("Ingrese nombre del producto: ");
+        nombre = scanner.nextLine();
+        System.out.println("Ingrese stock: ");
+        stock = Integer.parseInt(scanner.nextLine());
+        
+        arbol.insert(nombre,stock);
+
+        scanner.close();
+    }
+
+    static void eliminar(ArbolAVL<String> arbol) throws Exception{
+        Scanner scanner = new Scanner(System.in);
+        String nombre; 
+
+        System.out.println("Ingrese el nombre del producto a eliminar: ");
+        nombre = scanner.nextLine();
+
+        arbol.remove(nombre);
+        
+        scanner.close();
+    }
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int opcion = 0; 
         boolean salida = false;
+        ArbolAVL<String> arbol = new ArbolAVL<String>();
 
         System.out.println("Main class");
         do{
@@ -28,9 +57,9 @@ public class Main{
             switch(opcion){
                 case 1:
                     //agregar producto
-                    Funciones accion = new Funciones();
+                    System.out.println("\nAgregar producto: ");
                     try {
-                        accion.agregar();
+                        agregar(arbol);
                     } catch (Exception e) {
                         // TODO Auto-generated catch block
                         e.printStackTrace();
@@ -38,6 +67,14 @@ public class Main{
                     break;
                 case 2:
                     //eliminar producto
+                    System.out.println("\nEliminar producto: ");
+                    try {
+                        eliminar(arbol);
+                    } catch (Exception e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                        System.out.println("Producto no encontrado");
+                    }
                     break;
                 case 3:
                     //buscar producto

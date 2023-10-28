@@ -52,7 +52,9 @@ public class Main{
     }
 
     //TODO falta implementar
-    static void mostrar(){}
+    static void mostrar(ArbolAVL<String> arbol){
+
+    }
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -105,11 +107,14 @@ public class Main{
                     }
                     break;
                 case 4:
+                    arbol.printInOrder();
+                    mostrar(arbol);
                     //mostrar inventario
                     //implementar con lista
                     break;
                 case 5:
                     //salir
+                    
                     salida = true;
                     break;
                 default:

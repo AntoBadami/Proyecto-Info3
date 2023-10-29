@@ -132,6 +132,11 @@ public class ArbolAVL <AnyType extends Comparable<? super AnyType>> {
     public void printPreOrder(){
         if(root != null) root.printPreOrder();
     }
+
+    public NodoAVL<AnyType> devolver(){
+        if(root != null) root.devolverElementos();
+        return root;
+    }
     
     //metodo para obtener la altura de un nodo
     public int altura (NodoAVL<AnyType> nodo){
@@ -172,3 +177,8 @@ public class ArbolAVL <AnyType extends Comparable<? super AnyType>> {
         return rotacionSimpleDer(k1); // Luego, rotación simple a la derecha en el nodo original
     }
 }
+
+
+
+
+

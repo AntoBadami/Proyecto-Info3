@@ -51,16 +51,42 @@ public class Main{
         }
     }
 
-    //TODO falta implementar
-    static void mostrar(ArbolAVL<String> arbol){
+    //TODO falta implementar: El usuario debe poder ver una lista de todos los productos en el inventario, ordenados
+//alfabéticamente por nombre.
+static void mostrar(ArbolAVL<String> arbol, ListQueue<String> cola) throws Exception {
+    System.out.println("Inventario ordenado alfabéticamente por nombre:");
 
+    // Llenar la cola con los elementos del árbol en orden alfabético
+    inOrderLlenarCola(arbol.root, cola);
+
+    // Imprimir los elementos en el orden en que se insertaron en la cola
+    while (!cola.isEmpty()) {
+        String nombre = cola.getFront();
+        int stock = cola.getStock();
+        System.out.println("Nombre: " + nombre + ", Stock: " + stock);
+        try {
+            cola.dequeue();
+        } catch (Exception e) {
+            System.out.println("Error al obtener el siguiente elemento de la cola: " + e.getMessage());
+        }
     }
+}
+
+static void inOrderLlenarCola(NodoAVL<String> nodo, ListQueue<String> cola) {
+    if (nodo != null) {
+        inOrderLlenarCola(nodo.left, cola); // Recorre el subárbol izquierdo
+        cola.enqueue(nodo.element, nodo.stock); // Agrega el elemento a la cola
+        inOrderLlenarCola(nodo.right, cola); // Recorre el subárbol derecho
+    }
+}
+
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int opcion = 0; 
         boolean salida = false;
         ArbolAVL<String> arbol = new ArbolAVL<String>();
+        ListQueue<String> lista = new ListQueue();
 
         System.out.println("Main class");
         do{
@@ -107,8 +133,13 @@ public class Main{
                     }
                     break;
                 case 4:
-                    arbol.printInOrder();
-                    mostrar(arbol);
+                    try {
+                        mostrar(arbol, lista);
+                    } catch (Exception e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+                    lista.makeEmpty();
                     //mostrar inventario
                     //implementar con lista
                     break;
@@ -126,3 +157,6 @@ public class Main{
         scanner.close();
     }
 }
+
+
+

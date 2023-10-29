@@ -22,4 +22,13 @@ public class NodoAVL <AnyType> {
         if(left != null) left.printPreOrder(); //left
         if(right != null) right.printPreOrder(); //right
     }
+
+    public AnyType devolverElementos(){
+        if(left != null) left.devolverElementos(); //left
+        if(right != null) right.devolverElementos(); //right
+        return element;//nodo
+    }
+    
 }
+
+

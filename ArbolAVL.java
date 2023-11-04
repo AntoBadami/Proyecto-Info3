@@ -70,7 +70,8 @@ public class ArbolAVL <AnyType extends Comparable<? super AnyType>> {
         }else if(x.compareTo(t.element) > 0){
             t.right = insert(x, t.right, stock);
         }else{
-            throw new Exception("Producto duplicado: " +x.toString()); //DuplicateItemException(x.toString());
+            t.stock = t.stock + stock;
+            throw new Exception("Producto duplicado: " +x.toString()+" - stocks sumados"); //DuplicateItemException(x.toString());
         }
         
         actualizarAltura(t);// Actualiza la altura del nodo actual

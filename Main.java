@@ -18,6 +18,8 @@ public class Main{
         
         System.out.println("Ingrese nombre del producto: ");
         nombre = scanner.nextLine();
+        nombre = nombre.toLowerCase();
+
         System.out.println("Ingrese stock: ");
         stock = Integer.parseInt(scanner.nextLine());
         
@@ -51,8 +53,6 @@ public class Main{
         }
     }
 
-    //TODO falta implementar: El usuario debe poder ver una lista de todos los productos en el inventario, ordenados
-//alfabéticamente por nombre.
 static void mostrar(ArbolAVL<String> arbol, ListQueue<String> cola) throws Exception {
     System.out.println("Inventario ordenado alfabéticamente por nombre:");
 
@@ -136,7 +136,6 @@ static void inOrderLlenarCola(NodoAVL<String> nodo, ListQueue<String> cola) {
                     try {
                         mostrar(arbol, lista);
                     } catch (Exception e) {
-                        // TODO Auto-generated catch block
                         e.printStackTrace();
                     }
                     lista.makeEmpty();

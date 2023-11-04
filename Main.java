@@ -1,13 +1,5 @@
 import java.util.Scanner;
 
-/**
-Imagina que estás trabajando en una pequeña tienda y necesitas un programa que te ayude
-a llevar un registro de tu inventario. El programa debe permitir agregar nuevos productos,
-eliminar productos, buscar productos por nombre y mostrar el inventario ordenado
-alfabéticamente.
- */
-
-//TODO hacer archivo README
 
 public class Main{
 

@@ -10,7 +10,7 @@ public class Main{
         
         System.out.println("Ingrese nombre del producto: ");
         nombre = scanner.nextLine();
-        nombre = nombre.toLowerCase();
+        nombre = nombre.toLowerCase(); //pasar a minusculas
 
         System.out.println("Ingrese stock: ");
         stock = Integer.parseInt(scanner.nextLine());
@@ -78,7 +78,7 @@ static void inOrderLlenarCola(NodoAVL<String> nodo, ListQueue<String> cola) {
         int opcion = 0; 
         boolean salida = false;
         ArbolAVL<String> arbol = new ArbolAVL<String>();
-        ListQueue<String> lista = new ListQueue();
+        ListQueue<String> lista = new ListQueue<String>();
 
         System.out.println("Main class");
         do{

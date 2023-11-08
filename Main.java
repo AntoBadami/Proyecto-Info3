@@ -125,14 +125,13 @@ static void inOrderLlenarCola(NodoAVL<String> nodo, ListQueue<String> cola) {
                     }
                     break;
                 case 4:
+                    //mostrar inventario
                     try {
                         mostrar(arbol, lista);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
                     lista.makeEmpty();
-                    //mostrar inventario
-                    //implementar con lista
                     break;
                 case 5:
                     //salir

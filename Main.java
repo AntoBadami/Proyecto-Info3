@@ -3,85 +3,15 @@ import java.util.Scanner;
 
 public class Main{
 
-    static void agregar(ArbolAVL<String> arbol, Scanner scanner) throws Exception{
-        
-        String nombre; 
-        int stock = 0;
-        
-        System.out.println("Ingrese nombre del producto: ");
-        nombre = scanner.nextLine();
-        nombre = nombre.toLowerCase(); //pasar a minusculas
-
-        System.out.println("Ingrese stock: ");
-        stock = Integer.parseInt(scanner.nextLine());
-        
-        arbol.insert(nombre,stock);
-    }
-
-    static void eliminar(ArbolAVL<String> arbol, Scanner scanner) throws Exception{
-       
-        String nombre; 
-
-        System.out.println("Ingrese el nombre del producto a eliminar: ");
-        nombre = scanner.nextLine();
-
-        arbol.remove(nombre);
-    }
-
-    static void buscar(ArbolAVL<String> arbol, Scanner scanner) throws Exception{
-        
-        String nombre; 
-        
-        System.out.println("Ingrese el nombre del producto a buscar: ");
-        nombre = scanner.nextLine();
-        
-        NodoAVL<String> nodoEncontrado = arbol.find(nombre);
-        if (nodoEncontrado != null) {
-            System.out.println("Producto encontrado:");
-            System.out.println("Nombre: " + nodoEncontrado.element);
-            System.out.println("Stock: " + nodoEncontrado.stock);
-        } else {
-            System.out.println("Producto no encontrado");
-        }
-    }
-
-    static void mostrar(ArbolAVL<String> arbol, ListQueue<String> cola) throws Exception {
-        System.out.println("Inventario ordenado alfabéticamente por nombre:");
-
-        // Llenar la cola con los elementos del árbol en orden alfabético
-        inOrderLlenarCola(arbol.root, cola);
-
-        // Imprimir los elementos en el orden en que se insertaron en la cola
-        while (!cola.isEmpty()) {
-            String nombre = cola.getFront();
-            int stock = cola.getStock();
-            System.out.println("Nombre: " + nombre + ", Stock: " + stock);
-            try {
-                cola.dequeue();
-            } catch (Exception e) {
-                System.out.println("Error al obtener el siguiente elemento de la cola: " + e.getMessage());
-            }
-        }
-    }
-
-    static void inOrderLlenarCola(NodoAVL<String> nodo, ListQueue<String> cola) {
-        if (nodo != null) {
-            inOrderLlenarCola(nodo.left, cola); // Recorre el subárbol izquierdo
-            cola.enqueue(nodo.element, nodo.stock); // Agrega el elemento a la cola
-            inOrderLlenarCola(nodo.right, cola); // Recorre el subárbol derecho
-        }
-    }
-
-
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        int opcion = 0; 
+        int opcion = 0;
         boolean salida = false;
-        ArbolAVL<String> arbol = new ArbolAVL<String>();
-        ListQueue<String> lista = new ListQueue<String>();
+        ArbolAVL arbol = new ArbolAVL();
+        ListQueue lista = new ListQueue();
 
         System.out.println("Main class");
-        do{
+        do {
             System.out.println("\nMenu: ");
             System.out.println("1. Agregar producto ");
             System.out.println("2. Eliminar producto ");
@@ -96,53 +26,52 @@ public class Main{
                 System.out.println("Entrada no válida. Introduzca un número válido.");
                 continue; // Salta al siguiente ciclo
             }
-            switch(opcion){
+            switch (opcion) {
                 case 1:
-                    //agregar producto
+                    // agregar producto
                     System.out.println("\nAgregar producto: ");
                     try {
-                        agregar(arbol, scanner);
+                        Funciones.agregar(arbol, scanner);
                     } catch (Exception e) {
                         System.out.println("Error al agregar el producto: " + e.getMessage());
                     }
                     break;
                 case 2:
-                    //eliminar producto
+                    // eliminar producto
                     System.out.println("\nEliminar producto: ");
                     try {
-                        eliminar(arbol, scanner);
+                        Funciones.eliminar(arbol, scanner);
                     } catch (Exception e) {
                         System.out.println("Producto no encontrado");
                     }
                     break;
                 case 3:
-                    //buscar producto
+                    // buscar producto
                     System.out.println("\nBuscar producto: ");
                     try {
-                        buscar(arbol, scanner);
+                        Funciones.buscar(arbol, scanner);
                     } catch (Exception e) {
                         System.out.println("Producto no encontrado");
                     }
                     break;
                 case 4:
-                    //mostrar inventario
+                    // mostrar inventario
                     try {
-                        mostrar(arbol, lista);
+                        Funciones.mostrar(arbol, lista);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
                     lista.makeEmpty();
                     break;
                 case 5:
-                    //salir
-                    
+                    // salir
                     salida = true;
                     break;
                 default:
-                    System.out.println("opcion no valida");
+                    System.out.println("Opción no válida");
             }
 
-        }while(salida == false);
+        } while (!salida);
 
         scanner.close();
     }

@@ -45,32 +45,32 @@ public class Main{
         }
     }
 
-static void mostrar(ArbolAVL<String> arbol, ListQueue<String> cola) throws Exception {
-    System.out.println("Inventario ordenado alfabéticamente por nombre:");
+    static void mostrar(ArbolAVL<String> arbol, ListQueue<String> cola) throws Exception {
+        System.out.println("Inventario ordenado alfabéticamente por nombre:");
 
-    // Llenar la cola con los elementos del árbol en orden alfabético
-    inOrderLlenarCola(arbol.root, cola);
+        // Llenar la cola con los elementos del árbol en orden alfabético
+        inOrderLlenarCola(arbol.root, cola);
 
-    // Imprimir los elementos en el orden en que se insertaron en la cola
-    while (!cola.isEmpty()) {
-        String nombre = cola.getFront();
-        int stock = cola.getStock();
-        System.out.println("Nombre: " + nombre + ", Stock: " + stock);
-        try {
-            cola.dequeue();
-        } catch (Exception e) {
-            System.out.println("Error al obtener el siguiente elemento de la cola: " + e.getMessage());
+        // Imprimir los elementos en el orden en que se insertaron en la cola
+        while (!cola.isEmpty()) {
+            String nombre = cola.getFront();
+            int stock = cola.getStock();
+            System.out.println("Nombre: " + nombre + ", Stock: " + stock);
+            try {
+                cola.dequeue();
+            } catch (Exception e) {
+                System.out.println("Error al obtener el siguiente elemento de la cola: " + e.getMessage());
+            }
         }
     }
-}
 
-static void inOrderLlenarCola(NodoAVL<String> nodo, ListQueue<String> cola) {
-    if (nodo != null) {
-        inOrderLlenarCola(nodo.left, cola); // Recorre el subárbol izquierdo
-        cola.enqueue(nodo.element, nodo.stock); // Agrega el elemento a la cola
-        inOrderLlenarCola(nodo.right, cola); // Recorre el subárbol derecho
+    static void inOrderLlenarCola(NodoAVL<String> nodo, ListQueue<String> cola) {
+        if (nodo != null) {
+            inOrderLlenarCola(nodo.left, cola); // Recorre el subárbol izquierdo
+            cola.enqueue(nodo.element, nodo.stock); // Agrega el elemento a la cola
+            inOrderLlenarCola(nodo.right, cola); // Recorre el subárbol derecho
+        }
     }
-}
 
 
     public static void main(String[] args) {
@@ -112,7 +112,7 @@ static void inOrderLlenarCola(NodoAVL<String> nodo, ListQueue<String> cola) {
                     try {
                         eliminar(arbol, scanner);
                     } catch (Exception e) {
-                        System.out.println("Producto no encontrado: ");
+                        System.out.println("Producto no encontrado");
                     }
                     break;
                 case 3:
